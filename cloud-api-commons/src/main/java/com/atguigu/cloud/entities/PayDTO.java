@@ -7,7 +7,12 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-
+/**
+ * @auther zzyy
+ * @create 2023-12-22 22:25
+ * 一般而言，调用者不应该获悉服务提供者的entity资源并知道表结构关系，所以服务提供方给出的
+ *       接口文档都都应成为DTO
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,5 +29,3 @@ public class PayDTO implements Serializable
     private BigDecimal amount;
 }
 
-
- 

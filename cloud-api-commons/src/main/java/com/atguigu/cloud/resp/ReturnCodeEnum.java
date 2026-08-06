@@ -6,11 +6,12 @@ import java.util.Arrays;
 
 /**
  * @auther zzyy
- * @create 2023-11-04 11:51
+ * @create 2023-12-22 15:45
  */
 @Getter
 public enum ReturnCodeEnum
 {
+    //1 举值
     /**操作失败**/
     RC999("999","操作XXX失败"),
     /**操作成功**/
@@ -39,18 +40,22 @@ public enum ReturnCodeEnum
     BUSINESS_ERROR("1004","业务逻辑异常"),
     UNSUPPORTED_GRANT_TYPE("1003", "不支持的认证模式");
 
-    /**自定义状态码**/
-    private final String code;
-    /**自定义描述**/
-    private final String message;
+    //如何定义一个通用的枚举类，对于枚举编写，阳哥小口诀
+    //举值-构造-遍历
 
-    ReturnCodeEnum(String code, String message){
+    //2 构造
+    private final String code; // 自定义的状态码
+    private final String message; // 自定义的描述信息
+
+    ReturnCodeEnum(String code, String message)
+    {
         this.code = code;
         this.message = message;
     }
 
-    //遍历枚举V1
-    public static ReturnCodeEnum getReturnCodeEnum(String code)
+    //3 遍历
+    //3.1 传统版
+    public static ReturnCodeEnum getReturnCodeEnumV1(String code)
     {
         for (ReturnCodeEnum element : ReturnCodeEnum.values()) {
             if(element.getCode().equalsIgnoreCase(code))
@@ -60,17 +65,23 @@ public enum ReturnCodeEnum
         }
         return null;
     }
-    //遍历枚举V2
+    //3.2 Stream流式计算版
     public static ReturnCodeEnum getReturnCodeEnumV2(String code)
     {
         return Arrays.stream(ReturnCodeEnum.values()).filter(x -> x.getCode().equalsIgnoreCase(code)).findFirst().orElse(null);
     }
 
 
-    /*public static void main(String[] args)
+/*    public static void main(String[] args)
     {
-        System.out.println(getReturnCodeEnumV2("200"));
-        System.out.println(getReturnCodeEnumV2("200").getCode());
-        System.out.println(getReturnCodeEnumV2("200").getMessage());
+        System.out.println(getReturnCodeEnumV1("200"));
+        System.out.println(getReturnCodeEnumV1("200").getCode());
+        System.out.println(getReturnCodeEnumV1("200").getMessage());
+
+        System.out.println();
+
+        System.out.println(getReturnCodeEnumV2("404"));
+        System.out.println(getReturnCodeEnumV2("404").getCode());
+        System.out.println(getReturnCodeEnumV2("404").getMessage());
     }*/
 }
