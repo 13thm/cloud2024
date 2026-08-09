@@ -9,7 +9,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.beans.factory.annotation.Value;
 
 @RestController
 @Tag(name = "支付微服务模块",description = "支付CRUD")
@@ -54,5 +54,14 @@ public class PayController
     }
 
     //全部查询getall作为家庭作业
+
+    @Value("${server.port}")
+    private String port;
+
+    @GetMapping(value = "/pay/get/info")
+    private String getInfoByConsul(@Value("${atguigu.info}") String atguiguInfo)
+    {
+        return "atguiguInfo: "+atguiguInfo+"\t"+"port: "+port;
+    }
 }
 
