@@ -1,5 +1,9 @@
 server:
   port: 8001
+  servlet:
+    encoding:
+      charset: UTF-8
+      force-response: true   # 强制给所有响应的 Content-Type 带上 charset=UTF-8
 
 # ==========applicationName + druid-mysql8 driver===================
 spring:
